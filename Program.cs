@@ -18,7 +18,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<CinemaDbContext>();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
     SeedData.Seed(context);
 }
 
