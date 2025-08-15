@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using MovieApp.Data;
+using MovieApp.Interfaces;
+using MovieApp.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<CinemaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register repositories
+builder.Services.AddScoped<IStudioRepository, StudioRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
